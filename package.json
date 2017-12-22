@@ -1,0 +1,16 @@
+{
+  "name": "uni-demo",
+  "version": "1.0.0",
+  "description": "interact with sfdc api to demonstrate platform events and IoT explorer",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2"
+  }
+}

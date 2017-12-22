@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+dmeyer@wmp1.com
+-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Howdy</title>
+    <link rel="stylesheet" type="text/css" href="/assets/styles/salesforce-lightning-design-system.css" />
+    <script>
+    let v = {
+        switchImage: function() {
+            let img = document.getElementById('fridge');
+            if (img.src.includes("open")) {
+                img.src = "/assets/images/fridge-closed.png"
+            } else {
+                img.src = "/assets/images/fridge-open.png"
+            }
+        }
+
+    }
+    </script>
+</head>
+
+<body>
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-size--1-of-2">
+        <tr>
+            <td align="left">
+                <img src="/assets/images/fridge-closed.png" id="fridge" alt="danger zone" onclick="v.switchImage()"> </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td class="slds-text-align_right">
+                <!--<a href="/upsert">move data</a>-->
+                <input type="button" class="slds-button--neutral" value="simulate multiple devices" onclick="alert('to do')" />
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

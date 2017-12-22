@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+dmeyer@wmp1.com
+-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Howdy</title>
+    <link rel="stylesheet" type="text/css" href="/assets/styles/salesforce-lightning-design-system.css" />
+</head>
+
+<body>
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-size--1-of-2">
+        <% for(var i=0; i<errors.length; i++) { %>
+            <tr>
+                <td>
+                    <%= errors[i] %>
+                </td>
+            </tr>
+            <% } %>
+                <tr>
+                    <td class="slds-text-align_right">
+                        <a href="/upsert">move data</a></td>
+                </tr>
+    </table>
+</body>
+
+</html>
