@@ -34,9 +34,10 @@ dmeyer@wmp1.com
         <tr>
             <td class="slds-text-align_right">
                 <!--<a href="/upsert">move data</a>-->
-                <input type="button" class="slds-button--neutral" value="simulate multiple devices" onclick="v.multi()" />
+                <input type="button" class="slds-button--neutral" value="high temperature" onclick="v.temperature()" />
+                <input type="button" class="slds-button--neutral" value="high humidity" onclick="v.humidity()" />
                 <input type="button" class="slds-button--neutral" value="close door" onclick="v.close()" />
-                <input type="button" class="slds-button--neutral" value="open door" onclick="v.open()" />                
+                <input type="button" class="slds-button--neutral" value="open door" onclick="v.open()" />
             </td>
         </tr>
     </table>
@@ -44,16 +45,22 @@ dmeyer@wmp1.com
     let v = {
         img: document.getElementById('fridge'),
         close: function() {
-            top.location.href = '/?door=closed';
+            top.location.href = '/?state=closed';
         },
         open: function() {
-            top.location.href = '/?door=open';
+            top.location.href = '/?state=open';
         },
         multi: function() {
-            top.location.href = '/?door=multi';
-        }        
+            top.location.href = '/?state=multi';
+        },
+        humidity: function() {
+            top.location.href = '/?state=humidity';
+        },
+        temperature: function() {
+            top.location.href = '/?state=temperature';
+        }
     }
-    let door = getUrlParameter('door')? getUrlParameter('door') : 'closed';    
+    let door = getUrlParameter('state') ? getUrlParameter('state') : 'closed';
     v.img.src = '/assets/images/fridge-' + door + '.png';
     </script>
 </body>
