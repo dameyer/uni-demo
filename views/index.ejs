@@ -24,7 +24,7 @@ dmeyer@wmp1.com
     <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-size--1-of-2">
         <tr>
             <td align="left">
-                <img src="" id="fridge" alt="danger zone"> </td>
+                <img src="" id="fridge" border="0"> </td>
         </tr>
         <tr>
             <td>
@@ -34,7 +34,7 @@ dmeyer@wmp1.com
         <tr>
             <td class="slds-text-align_right">
                 <!--<a href="/upsert">move data</a>-->
-                <input type="button" class="slds-button--neutral" value="simulate multiple devices" onclick="alert('to do')" />
+                <input type="button" class="slds-button--neutral" value="simulate multiple devices" onclick="v.multi()" />
                 <input type="button" class="slds-button--neutral" value="close door" onclick="v.close()" />
                 <input type="button" class="slds-button--neutral" value="open door" onclick="v.open()" />                
             </td>
@@ -48,7 +48,10 @@ dmeyer@wmp1.com
         },
         open: function() {
             top.location.href = '/?door=open';
-        }
+        },
+        multi: function() {
+            top.location.href = '/?door=multi';
+        }        
     }
     let door = getUrlParameter('door')? getUrlParameter('door') : 'closed';    
     v.img.src = '/assets/images/fridge-' + door + '.png';
