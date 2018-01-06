@@ -21,29 +21,35 @@ dmeyer@wmp1.com
 </head>
 
 <body>
-    <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-size--1-of-2">
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-size--1-of-1 slds-medium-size--1-of-2">
         <tr>
             <td align="left">
                 <img src="" id="fridge" border="0"> </td>
         </tr>
         <tr>
-            <td class="slds-text-align_right">
-                <input type="button" class="slds-button--neutral" value="high temperature" onclick="v.temperature()" />
-            </td>
+            <td><a href="#" onclick="v.multi()">.</a></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
         </tr>
         <tr>
             <td class="slds-text-align_right">
-                <input type="button" class="slds-button--neutral" value="high humidity" onclick="v.humidity()" />
+                <input type="button " class="slds-button--neutral " value="high temperature " onclick="v.temperature()" />
             </td>
         </tr>
         <tr>
-            <td class="slds-text-align_right">
-                <input type="button" class="slds-button--neutral" value="open door" onclick="v.open()" />
+            <td class="slds-text-align_right ">
+                <input type="button " class="slds-button--neutral " value="high humidity " onclick="v.humidity() " />
             </td>
         </tr>
         <tr>
-            <td class="slds-text-align_right">
-                <input type="button" class="slds-button--neutral" value="close door" onclick="v.close()" />
+            <td class="slds-text-align_right ">
+                <input type="button " class="slds-button--neutral " value="open door " onclick="v.open() " />
+            </td>
+        </tr>
+        <tr>
+            <td class="slds-text-align_right ">
+                <input type="button " class="slds-button--neutral " value="close door " onclick="v.close() " />
             </td>
         </tr>
     </table>

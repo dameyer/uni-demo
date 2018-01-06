@@ -36,6 +36,7 @@ app.get('/',
 
         let state = (req.param('state')) ? req.param('state') : 'closed';
         if (state === 'multi') {
+            console.log('showing multi fridge image for volunteer refrigerators')
             //multipleFridges1k(0, 9, 0); //counter, #of events to fire, getEventTypes
         } else {
             let sid = req.sessionID;
@@ -87,59 +88,7 @@ let multipleFridges = function() {
 }
 
 
-
 app.listen(port, function() {
     console.log('Express server listening on port ' + port);
 });
 
-
-
-
-
-/**
- ** not used, might use in the future for enterprise org w/ more devices & events
- **
- **
- **
- */
-
-let multipleFridges1k = function(i, NUMBER_OF_EVENTS, which) {
-    /* 
-     * making individual calls because if a batch them 
-     * the ui changes in bulk and is not as visually appealing
-     */
-
-    let state = getState(which, i);
-    //    let e = getEvent(state, 'node:' + which +':'+ i);
-    let e = getEvent(state, 'node:' + i);
-    conn.sobject("Smart_Fridge_Reading__e").create(e, function(err, ret) {
-        if (err || !ret.success) { return console.error(err, ret); }
-        console.log(ret.id)
-        console.log(which)
-        if (i < NUMBER_OF_EVENTS) {
-            multipleFridges(++i, NUMBER_OF_EVENTS, which);
-        } else if (which < 2) { //3 groups of events, 0,1,2
-            sleep.sleep(7);
-            multipleFridges(0, NUMBER_OF_EVENTS, ++which);
-        }
-    });
-
-};
-
-
-
-let getState = function(which, i) {
-    let state = DOOR_CLOSED;
-    if (which == 0) {
-        if (i % 2 == 0) state = DOOR_OPEN
-        else if (i % 4 == 0) state = ABOVE_SAFE_HUMIDITY
-        else if (i % 8 == 0) state = ABOVE_SAFE_TEMPERATURE
-
-    } else if (which == 1) {
-        if (i % 2 == 0) state = ABOVE_SAFE_TEMPERATURE
-        else if (i % 4 == 0) state = DOOR_OPEN
-        else if (i % 8 == 0) state = ABOVE_SAFE_HUMIDITY
-    }
-    // 2 - DOOR_CLOSED
-    return state;
-}
