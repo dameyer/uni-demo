@@ -4,6 +4,7 @@ let express = require('express'),
     app = express(),
     port = process.env.PORT || 5000,
     http = require("http"),
+    deviceId = '',
     USERNAME = process.env.USERNAME,
     PASSWORD = process.env.PASSWORD,
     DOOR_OPEN = 'open',
@@ -11,8 +12,7 @@ let express = require('express'),
     ABOVE_SAFE_HUMIDITY = 'humidity',
     ABOVE_SAFE_TEMPERATURE = 'temperature',
     jsforce = require('jsforce'),
-    conn = new jsforce.Connection(),
-    sleep = require('sleep');
+    conn = new jsforce.Connection();
 
 app.use(cookieParser());
 app.use(session({
@@ -40,17 +40,19 @@ app.get('/',
             //multipleFridges1k(0, 9, 0); //counter, #of events to fire, getEventTypes
         } else {
             let sid = req.sessionID;
-            let deviceId = 'node:' + sid.substring(0, 11); //simulate deviceIds
+            deviceId = sid.substring(0, 16); //simulate deviceIds
             setState(state, deviceId);
         }
         res.render('index', {
             session: req.session,
+            fridgeId: deviceId
         });
     });
 
 let setState = function(door, deviceId) {
     let resetEvent = getEvent(DOOR_CLOSED, deviceId);
     console.log(resetEvent)
+    resetEvent.temperature__c = 0;
     conn.sobject("Smart_Fridge_Reading__e").create(resetEvent, function(err, ret) {
         if (err || !ret.success) { return console.error(err, ret); }
         console.log('reset to closed for deviceId=> ' + deviceId + ' :' + ret.id);
@@ -73,13 +75,13 @@ let getEvent = function(state, deviceId) {
         temperature__c: (state == ABOVE_SAFE_TEMPERATURE) ? 55.0 : 5.0,
         ts__c: ts
     }
-    if (state == ABOVE_SAFE_HUMIDITY) {
-        delete event.door__c;
-        delete event.temperature__c;
-    } else if (state == ABOVE_SAFE_TEMPERATURE) {
-        delete event.door__c;
-        delete event.humidity__c;
-    }
+    // if (state == ABOVE_SAFE_HUMIDITY) {
+    //     delete event.door__c;
+    //     delete event.temperature__c;
+    // } else if (state == ABOVE_SAFE_TEMPERATURE) {
+    //     delete event.door__c;
+    //     delete event.humidity__c;
+    // }
     return event;
 }
 

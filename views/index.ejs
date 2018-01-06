@@ -21,16 +21,19 @@ dmeyer@wmp1.com
 </head>
 
 <body>
-    <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-size--1-of-1 slds-medium-size--1-of-2">
+    <table class="slds-table  slds-table_bordered slds-table_cell-buffer slds-size--1-of-1 slds-medium-size--1-of-2">
         <tr>
             <td align="left">
                 <img src="" id="fridge" border="0"> </td>
         </tr>
         <tr>
-            <td><a href="#" onclick="v.multi()">.</a></td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
+            <td>
+                <div align="right">
+                    <img src="/assets/images/heroku.png" onclick="v.multi()" border="0"> 
+                    deviceId:&nbsp;&nbsp;
+                    <b><%- fridgeId %></b>&nbsp;
+                </div>
+            </td>
         </tr>
         <tr>
             <td class="slds-text-align_right">
