@@ -27,17 +27,23 @@ dmeyer@wmp1.com
                 <img src="" id="fridge" border="0"> </td>
         </tr>
         <tr>
-            <td>
-                &nbsp;
+            <td class="slds-text-align_right">
+                <input type="button" class="slds-button--neutral" value="high temperature" onclick="v.temperature()" />
             </td>
         </tr>
         <tr>
             <td class="slds-text-align_right">
-                <!--<a href="/upsert">move data</a>-->
-                <input type="button" class="slds-button--neutral" value="high temperature" onclick="v.temperature()" />
                 <input type="button" class="slds-button--neutral" value="high humidity" onclick="v.humidity()" />
-                <input type="button" class="slds-button--neutral" value="close door" onclick="v.close()" />
+            </td>
+        </tr>
+        <tr>
+            <td class="slds-text-align_right">
                 <input type="button" class="slds-button--neutral" value="open door" onclick="v.open()" />
+            </td>
+        </tr>
+        <tr>
+            <td class="slds-text-align_right">
+                <input type="button" class="slds-button--neutral" value="close door" onclick="v.close()" />
             </td>
         </tr>
     </table>

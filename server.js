@@ -53,7 +53,6 @@ let setState = function(door, deviceId) {
     conn.sobject("Smart_Fridge_Reading__e").create(resetEvent, function(err, ret) {
         if (err || !ret.success) { return console.error(err, ret); }
         console.log('reset to closed for deviceId=> ' + deviceId + ' :' + ret.id);
-//        sleep.sleep(1);
         let event = getEvent(door, deviceId);
         console.log(event)
         conn.sobject("Smart_Fridge_Reading__e").create(event, function(err, ret) {
