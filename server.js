@@ -94,3 +94,28 @@ app.listen(port, function() {
     console.log('Express server listening on port ' + port);
 });
 
+
+
+
+
+
+
+
+////////////////////////
+//FUTURE
+
+app.get('/service',
+    function(req, res) {
+        let state = req.param('state')
+        console.log(state)
+        if (state === 'multi') {
+            console.log('showing multi fridge image for volunteer refrigerators')
+            //multipleFridges1k(0, 9, 0); //counter, #of events to fire, getEventTypes
+        } else {
+            let sid = req.sessionID;
+            deviceId = sid.substring(0, 16); //simulate deviceIds
+            setState(state, deviceId);
+        }
+        res.send(state);
+    });
+
