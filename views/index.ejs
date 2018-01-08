@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--
-dmeyer@wmp.com
+dmeyer@wmp1.com
 -->
 
 <head>
@@ -10,7 +10,7 @@ dmeyer@wmp.com
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Howdy</title>
     <link rel="stylesheet" type="text/css" href="/assets/styles/salesforce-lightning-design-system.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>    
     <script>
     function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -29,9 +29,9 @@ dmeyer@wmp.com
         </tr>
         <tr>
             <td>
-                <a href="#" onclick="v.multi()">.</a>
+                <a href="#" onclick="v.temperatureTest()">.</a>
                 <div align="right">
-                    <img src="/assets/images/heroku.png" border="0"> deviceId:&nbsp;&nbsp;
+                    <img src="/assets/images/heroku.png" onclick="v.multi()" border="0"> deviceId:&nbsp;&nbsp;
                     <b><%- fridgeId %></b>&nbsp;
                 </div>
             </td>
@@ -61,21 +61,23 @@ dmeyer@wmp.com
     let v = {
         img: document.getElementById('fridge'),
         close: function() {
-            v.callout('closed');
+            top.location.href = '/?state=closed';
         },
         open: function() {
-            v.callout('open');
+            top.location.href = '/?state=open';
         },
         multi: function() {
-            v.img.src = '/assets/images/fridge-multi.png';
-            //v.callout('multi');
+            top.location.href = '/?state=multi';
         },
         humidity: function() {
-            v.callout('humidity');
+            top.location.href = '/?state=humidity';
         },
         temperature: function() {
-            v.callout('temperature');
+            top.location.href = '/?state=temperature';
         },
+        temperatureTest: function() {
+            v.callout('temperature');
+        },        
         callout: function(state) {
             let pieces = location.href.split('/');
             let svcUrl = pieces[0] + '//' + pieces[2] + '/service/?state=' + state
@@ -89,7 +91,8 @@ dmeyer@wmp.com
             });
         }
     }
-    v.img.src = '/assets/images/fridge-closed.png';
+    let door = getUrlParameter('state') ? getUrlParameter('state') : 'closed';
+    v.img.src = '/assets/images/fridge-' + door + '.png';
     </script>
 </body>
 
