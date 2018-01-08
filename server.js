@@ -61,18 +61,18 @@ app.get('/service',
 
 
 
-let setState = function(door, deviceId) {
+let setState = function(state, deviceId) {
     let resetEvent = getEvent(DOOR_CLOSED, deviceId);
     console.log(resetEvent)
     resetEvent.temperature__c = 0;
     conn.sobject("Smart_Fridge_Reading__e").create(resetEvent, function(err, ret) {
         if (err || !ret.success) { return console.error(err, ret); }
         console.log('reset to closed for deviceId=> ' + deviceId + ' :' + ret.id);
-        let event = getEvent(door, deviceId);
+        let event = getEvent(state, deviceId);
         console.log(event)
         conn.sobject("Smart_Fridge_Reading__e").create(event, function(err, ret) {
             if (err || !ret.success) { return console.error(err, ret); }
-            console.log("state set to " + door + ' for deviceId=> ' + deviceId + ' :' + ret.id);
+            console.log("state set to " + state + ' for deviceId=> ' + deviceId + ' :' + ret.id);
         });
     });
 };
