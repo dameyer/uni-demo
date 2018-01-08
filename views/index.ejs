@@ -10,7 +10,7 @@ dmeyer@wmp1.com
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Howdy</title>
     <link rel="stylesheet" type="text/css" href="/assets/styles/salesforce-lightning-design-system.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>
     function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -29,16 +29,16 @@ dmeyer@wmp1.com
         </tr>
         <tr>
             <td>
-                <a href="#" onclick="v.temperatureTest()">.</a>
+                <a href="#" onclick="v.multi()">.</a>
                 <div align="right">
-                    <img src="/assets/images/heroku.png" onclick="v.multi()" border="0"> deviceId:&nbsp;&nbsp;
+                    <img src="/assets/images/heroku.png" border="0"> deviceId:&nbsp;&nbsp;
                     <b><%- fridgeId %></b>&nbsp;
                 </div>
             </td>
         </tr>
         <tr>
             <td class="slds-text-align_right">
-                <input type="button" class="slds-button--neutral " value="high temperature " onclick="v.temperatureTest()" />
+                <input type="button" class="slds-button--neutral " value="high temperature " onclick="v.temperature()" />
             </td>
         </tr>
         <tr>
@@ -61,23 +61,21 @@ dmeyer@wmp1.com
     let v = {
         img: document.getElementById('fridge'),
         close: function() {
-            top.location.href = '/?state=closed';
+            v.callout('closed');
         },
         open: function() {
-            top.location.href = '/?state=open';
+            v.callout('open');
         },
         multi: function() {
-            top.location.href = '/?state=multi';
+            //top.location.href = '/?state=multi';
+            v.img.src = '/assets/images/fridge-multi.png';
         },
         humidity: function() {
-            top.location.href = '/?state=humidity';
+            v.callout('humidity');
         },
         temperature: function() {
-            top.location.href = '/?state=temperature';
-        },
-        temperatureTest: function() {
             v.callout('temperature');
-        },        
+        },
         callout: function(state) {
             let pieces = location.href.split('/');
             let svcUrl = pieces[0] + '//' + pieces[2] + '/service/?state=' + state

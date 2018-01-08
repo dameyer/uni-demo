@@ -34,7 +34,20 @@ conn.login(USERNAME, PASSWORD, function(err, res) {
 app.get('/',
     function(req, res) {
 
-        let state = (req.param('state')) ? req.param('state') : 'closed';
+        let sid = req.sessionID;
+        deviceId = sid.substring(0, 16); //simulate deviceIds
+        setState('closed', deviceId);
+
+        res.render('index', {
+            session: req.session,
+            fridgeId: deviceId
+        });
+    });
+
+app.get('/service',
+    function(req, res) {
+        let state = req.param('state')
+        console.log(state)
         if (state === 'multi') {
             console.log('showing multi fridge image for volunteer refrigerators')
             //multipleFridges1k(0, 9, 0); //counter, #of events to fire, getEventTypes
@@ -43,11 +56,10 @@ app.get('/',
             deviceId = sid.substring(0, 16); //simulate deviceIds
             setState(state, deviceId);
         }
-        res.render('index', {
-            session: req.session,
-            fridgeId: deviceId
-        });
+        res.send(state);
     });
+
+
 
 let setState = function(door, deviceId) {
     let resetEvent = getEvent(DOOR_CLOSED, deviceId);
@@ -75,15 +87,10 @@ let getEvent = function(state, deviceId) {
         temperature__c: (state == ABOVE_SAFE_TEMPERATURE) ? 55.0 : 5.0,
         ts__c: ts
     }
-    // if (state == ABOVE_SAFE_HUMIDITY) {
-    //     delete event.door__c;
-    //     delete event.temperature__c;
-    // } else if (state == ABOVE_SAFE_TEMPERATURE) {
-    //     delete event.door__c;
-    //     delete event.humidity__c;
-    // }
     return event;
+
 }
+
 
 let multipleFridges = function() {
 
@@ -94,28 +101,4 @@ app.listen(port, function() {
     console.log('Express server listening on port ' + port);
 });
 
-
-
-
-
-
-
-
-////////////////////////
-//FUTURE
-
-app.get('/service',
-    function(req, res) {
-        let state = req.param('state')
-        console.log(state)
-        if (state === 'multi') {
-            console.log('showing multi fridge image for volunteer refrigerators')
-            //multipleFridges1k(0, 9, 0); //counter, #of events to fire, getEventTypes
-        } else {
-            let sid = req.sessionID;
-            deviceId = sid.substring(0, 16); //simulate deviceIds
-            setState(state, deviceId);
-        }
-        res.send(state);
-    });
 
