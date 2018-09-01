@@ -17,6 +17,5 @@
       "description":"used to generate unique sessions",
       "generator": "secret"
     }
-  },
-  "success_url": "/settings"
+  }
 }
