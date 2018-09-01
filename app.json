@@ -1,0 +1,22 @@
+{
+  "name": "IOT Demo",
+  "description": "Node.js app to represent a refrigerator and create Salesforce Platform Events",
+  "repository": "https://github.com/dameyer/uni-demo",
+  "logo": "https://vignette.wikia.nocookie.net/adventuretimewithfinnandjake/images/3/3b/Jakesalad.png/revision/latest?cb=20160503014517",
+  "keywords": ["node","jsforce"],
+  "env": {
+    "USERNAME": {
+      "description": "Salesforce Dev Org Username",
+      "value": "yourdevusername@xyz.com"
+    },
+    "PASSWORD": {
+      "description": "Salesforce Dev Org Password",
+      "value": "yourpassword"
+    },
+    "SECRET": {
+      "description":"used to generate unique sessions",
+      "generator": "secret"
+    }
+  },
+  "success_url": "/settings"
+}
